@@ -68,7 +68,7 @@ class Lesson:
                 local_path = os.path.join(os.path.abspath("output"), presentationid,"%s.jpg" % idx)
                 slide["problem"]["image"] = local_path
                 slide["problem"]["page"] = idx
-                # print(slide["problem"]["problemType"])
+                print(slide["problem"]["result"])
                 return_problem.append(slide["problem"])
         return return_problem
 
@@ -228,6 +228,8 @@ class Lesson:
                 # blanks = promblem.get("blanks",[])
                 # answers = []
                 answers = promblem.get("answers",[])
+                if promblem["problemType"] == 5:
+                    answers = {"content": answers[0], "pics": []}
                 threading.Thread(target=self.answer_questions,args=(promblem["problemId"],promblem["problemType"],answers,limit)).start()
                 # print("Try answer")
                 break

@@ -209,7 +209,7 @@ class ProblemDetailWindow:
             for key, var in self.answer_vars:
                 if key in ai_answer:
                     var.set(True)
-        elif self.problem.get('blanks'):  # 填空题
+        elif self.problem.get('blanks') or self.problem.get('problemType') == 5:  # 填空题
             for i, entry in enumerate(self.answer_entries):
                 if i < len(ai_answer):
                     entry.delete(0, tk.END)
